@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 0.1, 2 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.168627, 0.541176, 0.243137, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1, 0.05, 1 )
+
+[node name="Tile" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="Ground" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Ground_Collision" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )

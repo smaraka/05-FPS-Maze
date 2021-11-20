@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/crosshair.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://decal/muzzle.tres" type="Material" id=4]
 [ext_resource path="res://assets/muzzleflash.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/blasterF.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://MazeAssaultFire.tres" type="Animation" id=7]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -23,7 +24,6 @@ extents = Vector3( 0.4, 0.1, 0.4 )
 [node name="Player" type="KinematicBody" groups=[
 "Player",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -57,7 +57,6 @@ cast_to = Vector3( 0, 0, -200 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.271, -0.352, -0.899 )
 
 [node name="Gun" type="MeshInstance" parent="Pivot/Camera/Hand"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0868149 )
 mesh = ExtResource( 6 )
 material/0 = null
 material/1 = null
@@ -85,5 +84,8 @@ omni_attenuation = 8.87656
 [node name="Timer" type="Timer" parent="Pivot/Camera/Hand/Flash"]
 wait_time = 0.1
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/MazeAssaultFire = ExtResource( 7 )
 
 [connection signal="timeout" from="Pivot/Camera/Hand/Flash/Timer" to="Pivot/Camera/Hand/Flash" method="_on_Timer_timeout"]

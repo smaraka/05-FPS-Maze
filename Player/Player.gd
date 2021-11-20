@@ -4,10 +4,13 @@ onready var Camera = $Pivot/Camera
 onready var flash = $Pivot/Camera/Hand/Flash 
 
 var damage = 10
-const MAX_CAM_SHAKE = 0.3
+const MAX_CAM_SHAKE = 0.4
+
+
 
 var gravity = -30
 var max_speed = 8
+var score = 0
 var mouse_sensitivity = 0.002
 var mouse_range = 1.2
 
@@ -34,7 +37,7 @@ func get_input():
 
 func fire():
 	if anim_player == null:
-		anim_player = get_node_or_null("/root/Game/AnimationPlayer")
+		anim_player = get_node_or_null("AnimationPlayer")
 	if anim_player != null:
 		if Input.is_action_pressed("fire"):
 			if not anim_player.is_playing():
@@ -44,13 +47,14 @@ func fire():
 				if raycast.is_colliding():
 					var target = raycast.get_collider()
 					if target.is_in_group("Enemy"):
-						target.health -= damage
+						score += 1
+						target.queue_free()
 			var d = decal.instance()
 			raycast.get_collider().add_child(d)
 			d.global_transform.origin= raycast.get_collision_point()
 			d.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
 			flash.shoot()
-			anim_player.play("AssaultFire")
+			anim_player.play("MazeAssaultFire")
 			print(global_transform.origin)
 		else:
 			camera.translation = Vector3()

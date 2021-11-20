@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/Main.gd" type="Script" id=1]
+
+[node name="Hud" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.0
+margin_bottom = 5.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 20.0
+color = Color( 0.266667, 0.266667, 0.266667, 1 )
+
+[node name="Score" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Score: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

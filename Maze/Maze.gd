@@ -65,18 +65,19 @@ onready var Exit = preload("res://Exit/Exit.tscn")
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	randomize()
 	make_maze()
 	var key = Key.instance()
-	key.translate(Vector3(width*tile_size-1.5, 0.5, 1.5))
+	key.translate(Vector3((width*tile_size)-1.5, 1, 1.5))
 	add_child(key)
 	
 	print(key.global_transform.origin)
 	var exit = Exit.instance()
-	exit.translate(Vector3(width*tile_size-1.5, 0.5, 1.5))
-	print(exit.global_transform.origin)
-	add_child(exit)
+	exit.translate(Vector3((width*tile_size)-1.5, 0.1, 1.5))
 	
+	add_child(exit)
+	print(exit.global_transform.origin)
 func check_neighbors(cell, unvisited):
 	# returns an array of cell's unvisited neighbors
 	var list = []
